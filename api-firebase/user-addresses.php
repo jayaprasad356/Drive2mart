@@ -84,13 +84,19 @@ if ((isset($_POST['add_address'])) && ($_POST['add_address'] == 1)) {
     $area_id = (isset($_POST['area_id']) && !empty($_POST['area_id'])) ? $db->escapeString($fn->xss_clean($_POST['area_id'])) : "";
     $pincode_id = (isset($_POST['pincode_id']) && !empty($_POST['pincode_id'])) ? $db->escapeString($fn->xss_clean($_POST['pincode_id'])) : "";
     $city_id = (isset($_POST['city_id']) && !empty($_POST['city_id'])) ? $db->escapeString($fn->xss_clean($_POST['city_id'])) : "";
+
+    $area_text = (isset($_POST['area_text']) && !empty($_POST['area_text'])) ? $db->escapeString($fn->xss_clean($_POST['area_text'])) : "";
+    $pincode_text = (isset($_POST['pincode_text']) && !empty($_POST['pincode_text'])) ? $db->escapeString($fn->xss_clean($_POST['pincode_text'])) : "";
+    $city_text = (isset($_POST['city_text']) && !empty($_POST['city_text'])) ? $db->escapeString($fn->xss_clean($_POST['city_text'])) : "";
+
+
     $state = (isset($_POST['state']) && !empty($_POST['state'])) ? $db->escapeString($fn->xss_clean($_POST['state'])) : "";
     $country = (isset($_POST['country']) && !empty($_POST['country'])) ? $db->escapeString($fn->xss_clean($_POST['country'])) : "";
     $latitude = (isset($_POST['latitude']) && !empty($_POST['latitude'])) ? $db->escapeString($fn->xss_clean($_POST['latitude'])) : "0";
     $longitude = (isset($_POST['longitude']) && !empty($_POST['longitude'])) ? $db->escapeString($fn->xss_clean($_POST['longitude'])) : "0";
     $is_default = (isset($_POST['is_default']) && !empty($_POST['is_default'])) ? $db->escapeString($fn->xss_clean($_POST['is_default'])) : "0";
 
-    if (!empty($user_id) && !empty($type) && !empty($name) && !empty($mobile) && !empty($address) && !empty($landmark) && !empty($area_id) && !empty($pincode_id) && !empty($city_id) && !empty($state) && !empty($country)) {
+    if (!empty($user_id) && !empty($type) && !empty($name) && !empty($mobile) && !empty($address)  && !empty($area_id) && !empty($pincode_id) && !empty($city_id) && !empty($state) && !empty($country)) {
         if ($is_default == 1) {
             $fn->remove_other_addresses_from_default($user_id);
         }
@@ -105,6 +111,9 @@ if ((isset($_POST['add_address'])) && ($_POST['add_address'] == 1)) {
             'area_id' => $area_id,
             'pincode_id' => $pincode_id,
             'city_id' => $city_id,
+            'area_text' => $area_text,
+            'pincode_text' => $pincode_text,
+            'city_text' => $city_text,
             'state' => $state,
             'country' => $country,
             'latitude' => $latitude == "" ? "0" : $latitude,
@@ -137,6 +146,11 @@ if ((isset($_POST['add_address'])) && ($_POST['add_address'] == 1)) {
             $response['pincode_id'] = $pincode_id;
             $response['pincode'] = !empty($res1[0]['pincode']) ? $res1[0]['pincode'] : "";
             $response['city'] = !empty($res1[0]['city']) ? $res1[0]['city'] : "";
+
+            $response['area_text'] = $area_text;
+            $response['pincode_text'] = $pincode_text;
+            $response['city_text'] = $city_text;
+
             $response['state'] = $state;
             $response['country'] = $country;
             $response['latitude'] = $latitude == "" ? "0" : $latitude;
@@ -197,6 +211,10 @@ if ((isset($_POST['update_address'])) && ($_POST['update_address'] == 1)) {
     $longitude = (isset($_POST['longitude']) && !empty($_POST['longitude'])) ? trim($db->escapeString($fn->xss_clean($_POST['longitude']))) : "0";
     $is_default = (isset($_POST['is_default']) && !empty($_POST['is_default'])) ? trim($db->escapeString($fn->xss_clean($_POST['is_default']))) : "0";
 
+    $area_text = (isset($_POST['area_text']) && !empty($_POST['area_text'])) ? $db->escapeString($fn->xss_clean($_POST['area_text'])) : "";
+    $pincode_text = (isset($_POST['pincode_text']) && !empty($_POST['pincode_text'])) ? $db->escapeString($fn->xss_clean($_POST['pincode_text'])) : "";
+    $city_text = (isset($_POST['city_text']) && !empty($_POST['city_text'])) ? $db->escapeString($fn->xss_clean($_POST['city_text'])) : "";
+
     if (!empty($id) && !empty($user_id)) {
         if ($is_default == 1) {
             $fn->remove_other_addresses_from_default($user_id);
@@ -213,6 +231,11 @@ if ((isset($_POST['update_address'])) && ($_POST['update_address'] == 1)) {
                 'area_id' => $area_id,
                 'pincode_id' => $pincode_id,
                 'city_id' => $city_id,
+                
+                'area_text' => $area_text,
+                'pincode_text' => $pincode_text,
+                'city_text' => $city_text,
+
                 'state' => $state,
                 'country' => $country,
                 'latitude' => $latitude == "" ? "0" : $latitude,
@@ -240,6 +263,13 @@ if ((isset($_POST['update_address'])) && ($_POST['update_address'] == 1)) {
                 $response['pincode_id'] = $pincode_id;
                 $response['pincode'] = $pincodes[0]['pincode'];
                 $response['city'] = $city[0]['name'];
+
+                    
+                $response['area_text'] = $area_text;
+                $response['pincode_text'] = $pincode_text;
+                $response['city_text'] = $city_text;
+
+
                 $response['state'] = $state;
                 $response['country'] = $country;
                 $response['latitude'] = $latitude == "" ? "0" : $latitude;
@@ -325,6 +355,11 @@ if ((isset($_POST['get_addresses'])) && ($_POST['get_addresses'] == 1)) {
                     $res[$i]['pincode_id'] = !empty($res[$i]['pincode_id']) ? $res[$i]['pincode_id'] : "";
                     $res[$i]['city'] = !empty($res[$i]['city']) ? $res[$i]['city'] : "";
                     $res[$i]['city_id'] = !empty($res[$i]['city_id']) ? $res[$i]['city_id'] : "";
+
+                    $res[$i]['city_text'] = !empty($res[$i]['city_text']) ? $res[$i]['city_text'] : "";
+                    $res[$i]['pincode_text'] = !empty($res[$i]['pincode_text']) ? $res[$i]['pincode_text'] : "";
+                    $res[$i]['area_text'] = !empty($res[$i]['area_text']) ? $res[$i]['area_text'] : "";
+
                     $res[$i]['latitude'] = (!empty($res[$i]['latitude'])) ? $res[$i]['latitude'] : "0";
                     $res[$i]['longitude'] = (!empty($res[$i]['longitude'])) ? $res[$i]['longitude'] : "0";
                     $res[$i]['minimum_free_delivery_order_amount'] = (!empty($res[$i]['minimum_free_delivery_order_amount'])) ? $res[$i]['minimum_free_delivery_order_amount'] : "0";

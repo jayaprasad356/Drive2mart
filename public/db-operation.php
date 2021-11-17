@@ -2192,8 +2192,12 @@ if (isset($_POST['add_seller']) && $_POST['add_seller'] == 1) {
     $store_url = (isset($_POST['store_url']) && $_POST['store_url'] != "") ? $db->escapeString($fn->xss_clean($_POST['store_url'])) : "";
     $store_description = (isset($_POST['description']) && $_POST['description'] != "") ? $db->escapeString($fn->xss_clean($_POST['description'])) : "";
     $street = (isset($_POST['street']) && $_POST['street'] != "") ? $db->escapeString($fn->xss_clean($_POST['street'])) : "";
-    $pincode_id = (isset($_POST['pincode_id']) && $_POST['pincode_id'] != "") ? $db->escapeString($fn->xss_clean($_POST['pincode_id'])) : "0";
-    $city_id = (isset($_POST['city_id']) && $_POST['city_id'] != "") ? $db->escapeString($fn->xss_clean($_POST['city_id'])) : "0";
+    $pincode_id = "1";
+    $city_id = "1";
+    //$city_id = (isset($_POST['city_id']) && $_POST['city_id'] != "") ? $db->escapeString($fn->xss_clean($_POST['city_id'])) : "0";
+    $pincode_text = (isset($_POST['pincode_text']) && $_POST['pincode_text'] != "") ? $db->escapeString($fn->xss_clean($_POST['pincode_text'])) : "";
+    $city_text = (isset($_POST['city_text']) && $_POST['city_text'] != "") ? $db->escapeString($fn->xss_clean($_POST['city_text'])) : "";
+
     $state = (isset($_POST['state']) && $_POST['state'] != "") ? $db->escapeString($fn->xss_clean($_POST['state'])) : "";
     $account_number = (isset($_POST['account_number']) && $_POST['account_number'] != "") ? $db->escapeString($fn->xss_clean($_POST['account_number'])) : "";
     $bank_ifsc_code = (isset($_POST['ifsc_code']) && $_POST['ifsc_code'] != "") ? $db->escapeString($fn->xss_clean($_POST['ifsc_code'])) : "";
@@ -2289,7 +2293,7 @@ if (isset($_POST['add_seller']) && $_POST['add_seller'] == 1) {
         }
     }
 
-    $sql = "INSERT INTO `seller`(`name`, `store_name`,`slug`,`email`, `mobile`, `password`, `store_url`, `logo`, `store_description`, `street`, `pincode_id`,`city_id`, `state`, `account_number`, `bank_ifsc_code`, `account_name`, `bank_name`, `commission`,`status`,`categories`,`require_products_approval`,`national_identity_card`,`address_proof`,`pan_number`,`tax_name`,`tax_number`,`customer_privacy`,`latitude`,`longitude`) VALUES ('$name','$store_name','$slug','$email', '$mobile', '$password','$store_url' ,'$filename', '$store_description', '$street',$pincode_id,$city_id,'$state','$account_number','$bank_ifsc_code','$account_name','$bank_name','$commission','$status','$cat_ids','$require_products_approval','$national_id_card','$address_proof','$pan_number','$tax_name','$tax_number','$customer_privacy','$latitude','$longitude')";
+    $sql = "INSERT INTO `seller`(`name`, `store_name`,`slug`,`email`, `mobile`, `password`, `store_url`, `logo`, `store_description`, `street`, `pincode_id`,`city_id`,`pincode_text`,`city_text`, `state`, `account_number`, `bank_ifsc_code`, `account_name`, `bank_name`, `commission`,`status`,`categories`,`require_products_approval`,`national_identity_card`,`address_proof`,`pan_number`,`tax_name`,`tax_number`,`customer_privacy`,`latitude`,`longitude`) VALUES ('$name','$store_name','$slug','$email', '$mobile', '$password','$store_url' ,'$filename', '$store_description', '$street',$pincode_id,$city_id,'$pincode_text','$city_text','$state','$account_number','$bank_ifsc_code','$account_name','$bank_name','$commission','$status','$cat_ids','$require_products_approval','$national_id_card','$address_proof','$pan_number','$tax_name','$tax_number','$customer_privacy','$latitude','$longitude')";
     if ($db->sql($sql)) {
         echo '<label class="alert alert-success">Seller Added Successfully!</label>';
     } else {

@@ -22,13 +22,13 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">Name</label>
+                                        <label for="">Name</label><i class="text-danger asterik">*</i>
                                         <input type="text" class="form-control" name="name" id="name" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">Email</label>
+                                        <label for="">Email</label><i class="text-danger asterik">*</i>
                                         <input type="email" class="form-control" name="email" id="email" required>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">Mobile</label>
+                                        <label for="">Mobile</label><i class="text-danger asterik">*</i>
                                         <input type="number" class="form-control" name="mobile" id="mobile" required>
                                     </div>
                                 </div>
@@ -50,13 +50,13 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">Password</label>
+                                        <label for="">Password</label><i class="text-danger asterik">*</i>
                                         <input type="password" class="form-control" name="password" id="password" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">Confirm Password</label>
+                                        <label for="">Confirm Password</label><i class="text-danger asterik">*</i>
                                         <input type="password" class="form-control" name="confirm_password" required>
                                     </div>
                                 </div>
@@ -64,14 +64,29 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">Store Name</label>
+                                        <label for="">Store Name</label><i class="text-danger asterik">*</i>
                                         <input type="text" class="form-control" name="store_name" id="store_name" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="logo">Logo</label>
+                                        <label for="logo">Logo</label><i class="text-danger asterik">*</i>
                                         <input type="file" name="store_logo" id="store_logo" required /><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Enter Pincode</label><i class="text-danger asterik">*</i>
+                                        <input type="number" class="form-control" name="pincode_text" id="pincode_text" required>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div class="form-group">
+                                    <label for="">Click to Check</label>
+                                    <a href="#" title='check' id="check_btn_bottom" class="btn btn-primary col-sm-12 col-md-12 check_pincode">Check Pincode</a>
+                                                            
                                     </div>
                                 </div>
                             </div>
@@ -83,6 +98,22 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="city_id">City</label><i class="text-danger asterik">*</i>
+                                        <!-- <?php $db->sql("SET NAMES 'utf8'");
+                                        $sql = "SELECT * FROM cities ORDER BY id + 0 ASC";
+                                        $db->sql($sql);
+                                        $cities = $db->getResult();
+                                        ?> -->
+                                        <select id='city_text' name="city_text" class='form-control'required>
+                                            <!-- <option value=''>Select City</option>
+                                            <?php foreach ($cities as $row) { ?>
+                                                <option value='<?= $row['id'] ?>'><?= $row['name'] ?></option>
+                                            <?php } ?> -->
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group col-md-4">
                                     <div class="form-group">
                                         <label class="control-label" for="pincode_id">Pincode</label>
                                         <?php $db->sql("SET NAMES 'utf8'");
@@ -97,29 +128,14 @@
                                             <?php } ?>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
 
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-4">
+                                
+                                <div class="form-group col-md-8">
                                     <div class="form-group">
-                                        <label class="control-label" for="city_id">City</label>
-                                        <?php $db->sql("SET NAMES 'utf8'");
-                                        $sql = "SELECT * FROM cities ORDER BY id + 0 ASC";
-                                        $db->sql($sql);
-                                        $cities = $db->getResult();
-                                        ?>
-                                        <select id='city_id' name="city_id" class='form-control'>
-                                            <option value=''>Select City</option>
-                                            <?php foreach ($cities as $row) { ?>
-                                                <option value='<?= $row['id'] ?>'><?= $row['name'] ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <div class="form-group">
-                                        <label for='catogories_ids'>Category IDs <small>( Ex : 100,205, 360 <comma separated>)</small></label>
+                                        <label for='catogories_ids'>Category IDs <small>( Ex : 100,205, 360 <comma separated>)</small></label><i class="text-danger asterik">*</i>
                                         <select name='cat_ids[]' id='cat_ids' class='form-control' placeholder='Enter the category IDs you want to assign Seller' required multiple="multiple">
                                             <?php $sql = 'select id,name from `category`  order by id desc';
                                             $db->sql($sql);
@@ -137,8 +153,8 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">State</label>
-                                        <input type="text" class="form-control" name="state" id="state">
+                                        <label for="">State</label><i class="text-danger asterik">*</i>
+                                        <input type="text" class="form-control" name="state" id="state" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -171,7 +187,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">Commission (%) <small>[Will be used if category wise commission not set] <a href="#" data-toggle='modal' data-target='#howItWorksModal' title='How it works'>How seller commission works?</a></label></small>
+                                        <label for="">Commission (%) <small><i class="text-danger asterik">*</i>[Will be used if category wise commission not set] <a href="#" data-toggle='modal' data-target='#howItWorksModal' title='How it works'>How seller commission works?</a></label></small>
                                         <input type="number" class="form-control" name="commission" id="commission" required><br>
                                     </div>
                                 </div>
@@ -179,13 +195,13 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">National Identity Card</label>
+                                        <label for="">National Identity Card</label><i class="text-danger asterik">*</i>
                                         <input type="file" class="form-control" name="national_id_card" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">Address Proof</label>
+                                        <label for="">Address Proof</label><i class="text-danger asterik">*</i>
                                         <input type="file" class="form-control" name="address_proof" id="address_proof" required><br>
                                     </div>
                                 </div>
@@ -193,13 +209,13 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">Tax Name</label>
+                                        <label for="">Tax Name</label><i class="text-danger asterik">*</i>
                                         <input type="text" class="form-control" name="tax_name" required>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">Tax Number</label>
+                                        <label for="">Tax Number</label><i class="text-danger asterik">*</i>
                                         <input type="text" class="form-control" name="tax_number" required>
                                     </div>
                                 </div>
@@ -207,7 +223,7 @@
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">PAN Number</label>
+                                        <label for="">PAN Number</label><i class="text-danger asterik">*</i>
                                         <input type="text" class="form-control" name="pan_number" required>
                                     </div>
                                 </div>
@@ -241,7 +257,7 @@
 
                                 <div class="form-group col-md-3">
                                     <div class="form-group">
-                                        <label class="control-label">Require Product's Approval</label>
+                                        <label class="control-label">Require Product's Approval</label><i class="text-danger asterik">*</i>
                                         <div id="status" class="btn-group">
                                             <label class="btn btn-default" data-toggle-class="btn-default" data-toggle-passive-class="btn-default">
                                                 <input type="radio" name="require_products_approval" value="0"> Yes
@@ -294,7 +310,7 @@
                                 </div>
                                 <div class="form-group col-md-5">
                                     <div class="form-group">
-                                        <label class="control-label">Status</label>
+                                        <label class="control-label">Status</label><i class="text-danger asterik">*</i>
                                         <div id="status" class="btn-group">
                                             <label class="btn btn-default" data-toggle-class="btn-default" data-toggle-passive-class="btn-default">
                                                 <input type="radio" name="status" value="0"> Deactive
@@ -385,6 +401,8 @@
             password: "required",
             address: "required",
             description: "required",
+            city_text: "required",
+            pincode_text: "required",
             require_products_approval: "required",
             status: "required",
             confirm_password: {
@@ -404,6 +422,7 @@
         placeholder: 'type in category name to search',
 
     });
+    
     $('#add_form').on('submit', function(e) {
         e.preventDefault();
         var formData = new FormData(this);
@@ -432,5 +451,38 @@
                 });
             }
         }
+    });
+</script>
+<script>
+    $('.check_pincode').on('click', function(e) {
+        e.preventDefault();
+        
+        var pincode = $("#pincode_text").val();
+        $.ajax({
+                url:'api-firebase/getpincode.php',
+                type:'post',
+                data:'pincode='+pincode,
+                success: function(data) {
+                    if(data=='no'){
+					alert('Wrong Pincode');
+					
+                    }else{
+                        var getData=$.parseJSON(data);
+                        var options = getData.map(function(val, ind){
+                            return $("<option></option>").val(val.Name).html(val.Name);
+                        });
+                        $('#city_text').append(options);
+                        $('#state').val(getData[0].State);
+                        
+                        
+                    }
+                },
+                error: function(xhr, status, error) {
+                console.error(xhr);
+                alert("error: "+xhr+status+error);
+                }
+            });
+
+
     });
 </script>

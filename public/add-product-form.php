@@ -21,7 +21,10 @@ if (isset($_POST['btnAdd'])) {
     }
     if ($permissions['products']['create'] == 1) {
         $error = array();
-        $pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";
+         
+         $pincode_type = $db->escapeString($fn->xss_clean('all'));
+        
+        //$pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";
         if ($pincode_type == "all") {
             $pincode_ids = NULL;
         } else {
@@ -454,11 +457,11 @@ if (isset($_POST['btnAdd'])) {
                             <label for="">Made In :</label>
                             <input type="text" name="made_in" class="form-control">
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="product_pincodes">Delivery Places :</label><i class="text-danger asterik">*</i>
-                                    <select name="product_pincodes" id="product_pincodes" class="form-control" required>
+                                    <select name="product_pincodes" id="product_pincodes" class="form-control" >
                                         <option value="">Select Option</option>
                                         <option value="included">Pincode Included</option>
                                         <option value="excluded">Pincode Excluded</option>
@@ -482,7 +485,7 @@ if (isset($_POST['btnAdd'])) {
                                     </select>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row">
                             <div class="col-md-3">
@@ -608,21 +611,21 @@ if (isset($_POST['btnAdd'])) {
         }
     };
     // $('.pincodes').hide();
-    $('#pincode_ids_exc').prop('disabled', true);
+    // $('#pincode_ids_exc').prop('disabled', true);
 
-    $('#product_pincodes').on('change', function() {
-        var val = $('#product_pincodes').val();
-        if (val == "included" || val == "excluded") {
-            $('#pincode_ids_exc').prop('disabled', false);
-        } else {
-            $('#pincode_ids_exc').prop('disabled', true);
-        }
-    });
-    $('#pincode_ids_exc').select2({
-        width: 'element',
-        placeholder: 'type in category name to search',
+    // // $('#product_pincodes').on('change', function() {
+    // //     var val = $('#product_pincodes').val();
+    // //     if (val == "included" || val == "excluded") {
+    // //         $('#pincode_ids_exc').prop('disabled', false);
+    // //     } else {
+    // //         $('#pincode_ids_exc').prop('disabled', true);
+    // //     }
+    // // });
+    // $('#pincode_ids_exc').select2({
+    //     width: 'element',
+    //     placeholder: 'type in category name to search',
 
-    });
+    // });
 </script>
 
 <script>
