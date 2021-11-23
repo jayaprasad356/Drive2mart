@@ -29,11 +29,13 @@ foreach ($res as $row) {
     $other_images = $row['other_images'];
 }
 if (isset($_POST['btnEdit'])) {
+    
     if (defined('ALLOW_MODIFICATION') && ALLOW_MODIFICATION == 0) {
         echo '<label class="alert alert-danger">This operation is not allowed in demo panel!.</label>';
         return false;
     }
     if ($permissions['products']['update'] == 1) {
+        
         $error = array();
         $name = $fn->xss_clean($_POST['name']);
         if (strpos($name, '-') !== false) {
@@ -54,7 +56,9 @@ if (isset($_POST['btnEdit'])) {
                 $i++;
             }
         }
-        $pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";
+        $pincode_type = $db->escapeString($fn->xss_clean('all'));
+        
+        //$pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";
         if ($pincode_type == "all") {
             $pincode_ids = NULL;
         } else {
@@ -160,6 +164,7 @@ if (isset($_POST['btnEdit'])) {
                 $db->sql($sql);
             }
         }
+        //echo $name . $category_id . $description .$error['cancelable']. $error[0];
         // echo 'name:'.$name;
         if (!empty($name) && !empty($category_id) &&  !empty($serve_for) && !empty($description) && empty($error['cancelable']) && empty($error)) {
             if (strpos($name, "'") !== false) {
@@ -167,6 +172,7 @@ if (isset($_POST['btnEdit'])) {
                 if (strpos($description, "'") !== false)
                     $description = str_replace("'", "''", "$description");
             }
+            
             if (!empty($image)) {
                 // create random image file name
                 $string = '0123456789';
@@ -734,7 +740,7 @@ function isJSON($string)
                                         <label for="">Made In :</label>
                                         <input type="text" name="made_in" value="<?= $res[0]['made_in'] ?>" class="form-control">
                                     </div>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="product_pincodes">Delivery Places :</label><i class="text-danger asterik">*</i>
@@ -775,7 +781,7 @@ function isJSON($string)
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> -->
 
 
                                     <div class="row">

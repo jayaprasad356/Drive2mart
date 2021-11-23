@@ -139,44 +139,56 @@ $res = $db->getResult();
 
                             </div>
                             <div class="row">
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-8">
                                     <div class="form-group">
-                                        <label class="control-label" for="pincode_id">Pincode</label>
-                                        <?php $db->sql("SET NAMES 'utf8'");
-                                        $sql = "SELECT * FROM pincodes ORDER BY id + 0 ASC";
-                                        $db->sql($sql);
-                                        $pincodes = $db->getResult();
-                                        ?>
-                                        <select id='pincode_id' name="pincode_id" class='form-control'>
-                                            <option value=''>Select Pincode</option>
-                                            <?php foreach ($pincodes as $row) { ?>
-                                                <option value='<?= $row['id'] ?>' <?= ($res[0]['pincode_id'] == $row['id']) ? 'selected' : ''; ?>><?= $row['pincode'] ?></option>
+                                        <label for='catogories_ids'>Category IDs <small>( Ex : 100,205, 360)</small></label>
+                                        <select name='cat_ids[]' id='cat_ids' class='form-control' placeholder='Enter the category IDs you want to assign Seller' required multiple="multiple">
+                                            <?php $sql = 'select id,name from `category`  order by id desc';
+                                            $db->sql($sql);
+                                            $result = $db->getResult();
+                                            foreach ($result as $value) {
+                                                $categories = explode(',', $res[0]['categories']);
+                                                $selected = in_array($value['id'], $categories) ? 'selected' : '';
+                                            ?>
+                                                <option value='<?= $value['id'] ?>' <?= $selected ?>><?= $value['name'] ?></option>
                                             <?php } ?>
+
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <div class="form-group">
-                                        <label for="">State</label>
-                                        <input type="text" class="form-control" name="state" id="state" value="<?= (!empty($res[0]['state'])) ? $res[0]['state'] : ""; ?>">
-                                    </div>
-                                </div>
-
+                                
+                                
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label class="control-label" for="pincode_id">City</label>
-                                        <?php $db->sql("SET NAMES 'utf8'");
+                                        <label for="">Pincode</label><i class="text-danger asterik">*</i>
+                                        <input type="number" class="form-control" name="pincode_text" id="pincode_text" value="<?= $res[0]['pincode_text']; ?>" required>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div class="form-group">
+                                    <label for="">Click to Check</label>
+                                    <a href="#" title='check' id="check_btn_bottom" class="btn btn-primary col-sm-12 col-md-12 check_pincode">Check Pincode</a>
+                                                            
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                            <div class="form-group col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="city_id">City</label><i class="text-danger asterik">*</i>
+                                        <!-- <?php $db->sql("SET NAMES 'utf8'");
                                         $sql = "SELECT * FROM cities ORDER BY id + 0 ASC";
                                         $db->sql($sql);
                                         $cities = $db->getResult();
-                                        ?>
-                                        <select id='city_id' name="city_id" class='form-control'>
-                                            <option value=''>Select City</option>
+                                        ?> -->
+                                        <select id='city_text' name="city_text" class='form-control'required>
+                                            <!-- <option value=''>Select City</option>
                                             <?php foreach ($cities as $row) { ?>
-                                                <option value='<?= $row['id'] ?>' <?= ($res[0]['city_id'] == $row['id']) ? 'selected' : ''; ?>><?= $row['name'] ?></option>
-                                            <?php } ?>
+                                                <option value='<?= $row['id'] ?>'><?= $row['name'] ?></option>
+                                            <?php } ?> -->
                                         </select>
                                     </div>
                                 </div>
@@ -184,6 +196,22 @@ $res = $db->getResult();
                                     <div class="form-group">
                                         <label for="">PAN Number</label>
                                         <input type="text" class="form-control" name="pan_number" value="<?= $res[0]['pan_number']; ?>" required>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            <div class="row">
+                            <div class="form-group col-md-4">
+                                    <div class="form-group">
+                                        <label for="">State</label>
+                                        <input type="text" class="form-control" name="state" id="state" value="<?= (!empty($res[0]['state'])) ? $res[0]['state'] : ""; ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Account Number</label>
+                                        <input type="number" class="form-control" name="account_number" id="account_number" value="<?= (!empty($res[0]['account_number'])) ? $res[0]['account_number'] : ""; ?>">
                                     </div>
                                 </div>
 
@@ -211,36 +239,12 @@ $res = $db->getResult();
                                 </div>
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">Account Number</label>
-                                        <input type="number" class="form-control" name="account_number" id="account_number" value="<?= (!empty($res[0]['account_number'])) ? $res[0]['account_number'] : ""; ?>">
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-4">
-                                    <div class="form-group">
                                         <label for="">Commission (%) <small>[Will be used if category wise commission not set] <a href="#" data-toggle='modal' data-target='#howItWorksModal' title='How it works'>How seller commission works?</a></label></small>
                                         <input type="number" class="form-control" name="commission" id="commission" value="<?= $res[0]['commission']; ?>" required><br>
                                     </div>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <div class="form-group">
-                                        <label for='catogories_ids'>Category IDs <small>( Ex : 100,205, 360)</small></label>
-                                        <select name='cat_ids[]' id='cat_ids' class='form-control' placeholder='Enter the category IDs you want to assign Seller' required multiple="multiple">
-                                            <?php $sql = 'select id,name from `category`  order by id desc';
-                                            $db->sql($sql);
-                                            $result = $db->getResult();
-                                            foreach ($result as $value) {
-                                                $categories = explode(',', $res[0]['categories']);
-                                                $selected = in_array($value['id'], $categories) ? 'selected' : '';
-                                            ?>
-                                                <option value='<?= $value['id'] ?>' <?= $selected ?>><?= $value['name'] ?></option>
-                                            <?php } ?>
-
-                                        </select>
-                                    </div>
-                                </div>
+                                
+                                
 
                             </div>
                             <div class="row">
@@ -429,6 +433,8 @@ $res = $db->getResult();
             name: "required",
             mobile: "required",
             address: "required",
+            city_text: "required",
+            pincode_text: "required",
             confirm_password: {
                 equalTo: "#password"
             }
@@ -466,6 +472,79 @@ $res = $db->getResult();
                 }
             });
         }
+    });
+</script>
+<script>
+    var pincode = $("#pincode_text").val();
+        $.ajax({
+                url:'api-firebase/getpincode.php',
+                type:'post',
+                data:'pincode='+pincode,
+                success: function(data) {
+                    if(data=='no'){
+					alert('Wrong Pincode');
+					
+                    }else{
+                        var getData=$.parseJSON(data);
+                        var options = getData.map(function(val, ind){
+                            return $("<option></option>").val(val.Name).html(val.Name);
+                        });
+                        $('#city_text').append(options);
+                        $('#state').val(getData[0].State);
+                        $('#city_text option[value="<?php echo $res[0]['city_text']; ?>"]').attr("selected", "selected");
+                        //$('#city_text option:selected').attr("selected",null);
+                        
+                        
+                        
+                    }
+                },
+                error: function(xhr, status, error) {
+                console.error(xhr);
+                alert("error: "+xhr+status+error);
+                }
+            });
+
+</script>
+
+
+<script>
+    $('.check_pincode').on('click', function(e) {
+        e.preventDefault();
+        
+        $('#city_text').empty();
+        //$("#city_text")[0].innerHTML.replace('selected', '');
+        //$('#city_text').val(0);
+        
+        
+        
+        var pincode = $("#pincode_text").val();
+        $.ajax({
+                url:'api-firebase/getpincode.php',
+                type:'post',
+                data:'pincode='+pincode,
+                success: function(data) {
+                    if(data=='no'){
+					alert('Wrong Pincode');
+					
+                    }else{
+                        var getData=$.parseJSON(data);
+                        var options = getData.map(function(val, ind){
+                            return $("<option></option>").val(val.Name).html(val.Name);
+                        });
+                        $('#city_text').append(options);
+                        $('#state').val(getData[0].State);
+                        
+                        
+                        
+                    }
+                },
+                error: function(xhr, status, error) {
+                console.error(xhr);
+                alert("error: "+xhr+status+error);
+                }
+            });
+
+
     });
 </script>
 <?php $db->disconnect(); ?>

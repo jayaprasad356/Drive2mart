@@ -497,6 +497,7 @@ if (isset($_POST['add_delivery_boy']) && $_POST['add_delivery_boy'] == 1) {
     $other_payment_info = (isset($_POST['other_payment_info']) && !empty(trim($_POST['other_payment_info']))) ? $db->escapeString(trim($fn->xss_clean($_POST['other_payment_info']))) : '';
     $account_number = $db->escapeString($fn->xss_clean($_POST['account_number']));
     $account_name = $db->escapeString($fn->xss_clean($_POST['account_name']));
+    $pincode_text = $db->escapeString($fn->xss_clean($_POST['pincode_text']));
     $ifsc_code = $db->escapeString($fn->xss_clean($_POST['ifsc_code']));
     $password = $db->escapeString($fn->xss_clean($_POST['password']));
     $password = md5($password);
@@ -559,11 +560,11 @@ if (isset($_POST['add_delivery_boy']) && $_POST['add_delivery_boy'] == 1) {
             return false;
         }
     }
-    if (!empty($_POST['pincode_id'])) {
-        $pincode_id = $fn->xss_clean_array($_POST['pincode_id']);
-        $pincode_id = implode(",", $pincode_id);
-    }
-    $sql = "INSERT INTO delivery_boys (`name`,`mobile`,`password`,`address`,`bonus`, `driving_license`, `national_identity_card`, `dob`, `bank_account_number`, `bank_name`, `account_name`, `ifsc_code`,`other_payment_information`,`pincode_id`) VALUES ('$name', '$mobile', '$password', '$address','$bonus','$dr_filename', '$nic_filename', '$dob','$account_number','$bank_name','$account_name','$ifsc_code','$other_payment_info','$pincode_id')";
+    // if (!empty($_POST['pincode_id'])) {
+    //     $pincode_id = $fn->xss_clean_array($_POST['pincode_id']);
+    //     $pincode_id = implode(",", $pincode_id);
+    // }
+    $sql = "INSERT INTO delivery_boys (`name`,`mobile`,`password`,`address`,`bonus`, `driving_license`, `national_identity_card`, `dob`, `bank_account_number`, `bank_name`, `account_name`, `ifsc_code`,`other_payment_information`,`pincode_id`,`pincode_text`) VALUES ('$name', '$mobile', '$password', '$address','$bonus','$dr_filename', '$nic_filename', '$dob','$account_number','$bank_name','$account_name','$ifsc_code','$other_payment_info','1','$pincode_text')";
     if ($db->sql($sql)) {
         echo '<label class="alert alert-success">Delivery Boy Added Successfully!</label>';
     } else {
@@ -662,12 +663,13 @@ if (isset($_POST['update_delivery_boy']) && $_POST['update_delivery_boy'] == 1) 
         $sql = "UPDATE delivery_boys SET `national_identity_card`='" . $nic_filename . "' WHERE `id`=" . $id;
         $db->sql($sql);
     }
-    if (!empty($_POST['update_pincode_id'])) {
-        $pincode_id = $fn->xss_clean_array($_POST['update_pincode_id']);
-        $pincode_id = implode(",", $pincode_id);
-        $sql = "UPDATE delivery_boys SET `pincode_id`='" . $pincode_id . "' WHERE `id`=" . $id;
-        $db->sql($sql);
-    }
+    // if (!empty($_POST['update_pincode_id'])) {
+    //     $pincode_id = $fn->xss_clean_array($_POST['update_pincode_id']);
+    //     $pincode_id = implode(",", $pincode_id);
+    //     $sql = "UPDATE delivery_boys SET `pincode_id`='" . $pincode_id . "' WHERE `id`=" . $id;
+    //     $db->sql($sql);
+    // }
+    $pincode_id = "";
     if (!empty($password)) {
         $sql = "Update delivery_boys set `name`='" . $name . "',password='" . $password . "',`address`='" . $address . "',`bonus`='" . $bonus . "',`status`='" . $status . "',`dob`='$update_dob',`bank_account_number`='$update_account_number',`bank_name`='$update_bank_name',`account_name`='$update_account_name',`ifsc_code`='$update_ifsc_code',`other_payment_information`='$update_other_payment_info' where `id`=" . $id;
     } else {
@@ -2347,6 +2349,12 @@ if (isset($_POST['update_seller'])  && !empty($_POST['update_seller'])) {
     $longitude = (isset($_POST['longitude']) && $_POST['longitude'] != "") ? $db->escapeString($fn->xss_clean($_POST['longitude'])) : "0";
 
 
+    $pincode_id = "1";
+    $city_id = "1";
+    $pincode_text = (isset($_POST['pincode_text']) && $_POST['pincode_text'] != "") ? $db->escapeString($fn->xss_clean($_POST['pincode_text'])) : "";
+    $city_text = (isset($_POST['city_text']) && $_POST['city_text'] != "") ? $db->escapeString($fn->xss_clean($_POST['city_text'])) : "";
+
+
     $require_products_approval = (isset($_POST['require_products_approval']) && $_POST['require_products_approval'] != "") ? $db->escapeString($fn->xss_clean($_POST['require_products_approval'])) : 0;
     $cat_id = (isset($_POST['cat_ids'])) ? $fn->xss_clean_array($_POST['cat_ids']) : "";
     $cat_ids = "";
@@ -2435,9 +2443,9 @@ if (isset($_POST['update_seller'])  && !empty($_POST['update_seller'])) {
     }
 
     if (!empty($password)) {
-        $sql = "UPDATE `seller` SET `name`='$name',`latitude`='$latitude',`longitude`='$longitude',`customer_privacy`='$customer_privacy',`view_order_otp`='$view_order_otp',`assign_delivery_boy`='$assign_delivery_boy',`store_name`='$store_name',`slug` = '$slug',`email`='$email',`mobile`='$mobile',`password`='$password',`store_url`='$store_url',`store_description`='$store_description',`street`='$street',`pincode_id`='$pincode_id',`city_id`='$city_id',`state`='$state',`account_number`='$account_number',`bank_ifsc_code`='$bank_ifsc_code',`account_name`='$account_name',`bank_name`='$bank_name',`commission`='$commission',`status`=$status,`categories`='$cat_ids',`require_products_approval`='$require_products_approval' ,`pan_number`='$pan_number',`tax_name`='$tax_name',`tax_number`='$tax_number' WHERE id=" . $id;
+        $sql = "UPDATE `seller` SET `name`='$name',`latitude`='$latitude',`longitude`='$longitude',`customer_privacy`='$customer_privacy',`view_order_otp`='$view_order_otp',`assign_delivery_boy`='$assign_delivery_boy',`store_name`='$store_name',`slug` = '$slug',`email`='$email',`mobile`='$mobile',`password`='$password',`store_url`='$store_url',`store_description`='$store_description',`street`='$street',`pincode_id`='$pincode_id',`city_id`='$city_id',`pincode_text`='$pincode_text',`city_text`='$city_text',`state`='$state',`account_number`='$account_number',`bank_ifsc_code`='$bank_ifsc_code',`account_name`='$account_name',`bank_name`='$bank_name',`commission`='$commission',`status`=$status,`categories`='$cat_ids',`require_products_approval`='$require_products_approval' ,`pan_number`='$pan_number',`tax_name`='$tax_name',`tax_number`='$tax_number' WHERE id=" . $id;
     } else {
-        $sql = "UPDATE `seller` SET `name`='$name',`latitude`='$latitude',`longitude`='$longitude',`customer_privacy`='$customer_privacy',`view_order_otp`='$view_order_otp',`assign_delivery_boy`='$assign_delivery_boy',`store_name`='$store_name',`slug` = '$slug',`email`='$email',`mobile`='$mobile',`store_url`='$store_url',`store_description`='$store_description',`street`='$street',`pincode_id`='$pincode_id',`city_id`='$city_id',`state`='$state',`account_number`='$account_number',`bank_ifsc_code`='$bank_ifsc_code',`account_name`='$account_name',`bank_name`='$bank_name',`commission`='$commission',`status`=$status,`categories`='$cat_ids',`require_products_approval`='$require_products_approval',`pan_number`='$pan_number',`tax_name`='$tax_name',`tax_number`='$tax_number' WHERE id=" . $id;
+        $sql = "UPDATE `seller` SET `name`='$name',`latitude`='$latitude',`longitude`='$longitude',`customer_privacy`='$customer_privacy',`view_order_otp`='$view_order_otp',`assign_delivery_boy`='$assign_delivery_boy',`store_name`='$store_name',`slug` = '$slug',`email`='$email',`mobile`='$mobile',`store_url`='$store_url',`store_description`='$store_description',`street`='$street',`pincode_id`='$pincode_id',`city_id`='$city_id',`pincode_text`='$pincode_text',`city_text`='$city_text',`state`='$state',`account_number`='$account_number',`bank_ifsc_code`='$bank_ifsc_code',`account_name`='$account_name',`bank_name`='$bank_name',`commission`='$commission',`status`=$status,`categories`='$cat_ids',`require_products_approval`='$require_products_approval',`pan_number`='$pan_number',`tax_name`='$tax_name',`tax_number`='$tax_number' WHERE id=" . $id;
     }
     if ($db->sql($sql)) {
         echo "<label class='alert alert-success'>Information Updated Successfully.</label>";

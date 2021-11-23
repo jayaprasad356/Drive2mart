@@ -37,13 +37,13 @@ $config = $fn->get_configurations();
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Name</label>
+                                    <label for="">Name</label><i class="text-danger asterik">*</i>
                                     <input type="text" class="form-control" name="name">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Mobile</label>
+                                    <label for="">Mobile</label><i class="text-danger asterik">*</i>
                                     <input type="number" class="form-control" name="mobile">
                                 </div>
                             </div>
@@ -51,13 +51,13 @@ $config = $fn->get_configurations();
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Password</label>
+                                    <label for="">Password</label><i class="text-danger asterik">*</i>
                                     <input type="password" class="form-control" name="password" id="password">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Confirm Password</label>
+                                    <label for="">Confirm Password</label><i class="text-danger asterik">*</i>
                                     <input type="password" class="form-control" name="confirm_password">
                                 </div>
                             </div>
@@ -65,14 +65,14 @@ $config = $fn->get_configurations();
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Date Of Birth</label>
+                                    <label for="">Date Of Birth</label><i class="text-danger asterik">*</i>
                                     <input type="date" class="form-control" name="dob" id="dob" required>
                                 </div>
 
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Bonus (%)</label>
+                                    <label for="">Bonus (%)</label><i class="text-danger asterik">*</i>
                                     <input type="number" class="form-control" name="bonus" id="bonus" value="<?= $config['delivery-boy-bonus-percentage'] ?>"><br>
                                 </div>
                             </div>
@@ -80,13 +80,13 @@ $config = $fn->get_configurations();
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Driving License</label>
+                                    <label for="exampleInputFile">Driving License</label><i class="text-danger asterik">*</i>
                                     <input type="file" name="driving_license" id="driving_license" required /><br>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="exampleInputFile">National Identity Card</label>
+                                    <label for="exampleInputFile">National Identity Card</label><i class="text-danger asterik">*</i>
                                     <input type="file" name="national_identity_card" id="national_identity_card" required /><br>
                                 </div>
                             </div>
@@ -94,14 +94,14 @@ $config = $fn->get_configurations();
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Bank's IFSC Code</label>
+                                    <label for="">Bank's IFSC Code</label><i class="text-danger asterik">*</i>
                                     <input type="text" class="form-control" name="ifsc_code" required>
                                 </div>
 
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Bank Name</label>
+                                    <label for="">Bank Name</label><i class="text-danger asterik">*</i>
                                     <input type="text" class="form-control" name="bank_name" required>
                                 </div>
                             </div>
@@ -109,13 +109,13 @@ $config = $fn->get_configurations();
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Account Number</label>
+                                    <label for="">Account Number</label><i class="text-danger asterik">*</i>
                                     <input type="text" class="form-control" name="account_number" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Bank Account Name</label>
+                                    <label for="">Bank Account Name</label><i class="text-danger asterik">*</i>
                                     <input type="text" class="form-control" name="account_name" required>
                                 </div>
                             </div>
@@ -124,19 +124,25 @@ $config = $fn->get_configurations();
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Address</label>
+                                    <label for="">Address</label><i class="text-danger asterik">*</i>
                                     <textarea name="address" id="address" rows='3' class="form-control"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="">Other Payment Information</label>
+                                    <label for="">Other Payment Information</label><i class="text-danger asterik">*</i>
                                     <textarea name="other_payment_info" id="other_payment_info" rows='3' class="form-control"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class=" col-md-4">
+                        <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Pincode</label><i class="text-danger asterik">*</i>
+                                    <input type="number" class="form-control" name="pincode_text" required>
+                                </div>
+                            </div>
+                            <!-- <div class=" col-md-4">
                                 <div class="form-group">
                                     <label for='pincode_id'>Pincodes <small>( Ex : 100,205, 360 <comma separated>) </small></label>
                                     <select name='pincode_id[]' id='pincode_id' class='form-control' required placeholder='Enter the pincode you want to allow delivery this delivery boy' multiple="multiple">
@@ -149,7 +155,7 @@ $config = $fn->get_configurations();
                                         <?php } ?>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div><!-- /.box-body -->
 
@@ -223,27 +229,27 @@ $config = $fn->get_configurations();
                             <input type='hidden' name="nic_image" id="nic_image" value='' />
 
                             <div class="form-group">
-                                <label class="" for="">Name</label>
+                                <label class="" for="">Name</label><i class="text-danger asterik">*</i>
                                 <input type="text" id="update_name" name="update_name" class="form-control col-md-7 col-xs-12">
                             </div>
                             <div class="form-group">
-                                <label class="" for="">Mobile</label>
+                                <label class="" for="">Mobile</label><i class="text-danger asterik">*</i>
                                 <input type="text" id="update_mobile" name="update_mobile" class="form-control col-md-7 col-xs-12" readonly>
                             </div>
                             <div class="form-group">
-                                <label class="" for="">Password</label><small>( Leave it blank for no change )</small>
+                                <label class="" for="">Password</label><i class="text-danger asterik">*</i><small>( Leave it blank for no change )</small>
                                 <input type="password" id="update_password" name="update_password" class="form-control col-md-7 col-xs-12">
                             </div>
                             <div class="form-group">
-                                <label class="" for="">Confirm Password</label>
+                                <label class="" for="">Confirm Password</label><i class="text-danger asterik">*</i>
                                 <input type="password" id="confirm_password" name="confirm_password" class="form-control col-md-7 col-xs-12">
                             </div>
                             <div class="form-group">
-                                <label class="" for="">Address</label>
+                                <label class="" for="">Address</label><i class="text-danger asterik">*</i>
                                 <textarea name="update_address" id="update_address" class="form-control"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="">Bonus (%)</label>
+                                <label for="">Bonus (%)</label><i class="text-danger asterik">*</i>
                                 <input type="number" class="form-control" name="update_bonus" id="update_bonus">
                             </div>
                             <div class="row">
@@ -251,7 +257,7 @@ $config = $fn->get_configurations();
                                 <p id="no_dr_img"></p>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">Driving License</label>
+                                <label for="exampleInputFile">Driving License</label><i class="text-danger asterik">*</i>
                                 <input type="file" name="update_driving_license" id="update_driving_license" /><br>
                             </div>
                             <div class="row">
@@ -259,38 +265,38 @@ $config = $fn->get_configurations();
                                 <p id="no_nic_img"></p>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">National Identity Card</label>
+                                <label for="exampleInputFile">National Identity Card</label><i class="text-danger asterik">*</i>
                                 <input type="file" name="update_national_identity_card" id="update_national_identity_card" /><br>
                             </div>
                             <div class="form-group">
-                                <label for="">Date Of Birth</label>
+                                <label for="">Date Of Birth</label><i class="text-danger asterik">*</i>
                                 <input type="date" class="form-control" name="update_dob" id="update_dob" required>
                             </div>
                             <div class="form-group">
-                                <label for="">Bank Name</label>
+                                <label for="">Bank Name</label><i class="text-danger asterik">*</i>
                                 <input type="text" class="form-control" name="update_bank_name" id="update_bank_name" required>
                             </div>
                             <div class="form-group">
-                                <label for="">Account Number</label>
+                                <label for="">Account Number</label><i class="text-danger asterik">*</i>
                                 <input type="text" class="form-control" name="update_account_number" id="update_account_number" required>
                             </div>
                             <div class="form-group">
-                                <label for="">Bank Account Name</label>
+                                <label for="">Bank Account Name</label><i class="text-danger asterik">*</i>
                                 <input type="text" class="form-control" name="update_account_name" id="update_account_name" required>
                             </div>
                             <div class="form-group">
-                                <label for="">Bank's IFSC Code</label>
+                                <label for="">Bank's IFSC Code</label><i class="text-danger asterik">*</i>
                                 <input type="text" class="form-control" name="update_ifsc_code" id="update_ifsc_code" required>
                             </div>
                             <div class="form-group">
-                                <label for="">Other Payment Information</label>
+                                <label for="">Other Payment Information</label><i class="text-danger asterik">*</i>
                                 <textarea name="update_other_payment_info" id="update_other_payment_info" rows='3' class="form-control"></textarea>
                             </div>
                             <div class="row">
                                     <div class="col-md-offset-3 col-md-8" style="display:none;" id="not_assigned"></div>
                                 </div>
                                 <div class="row"></br></div>
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class=" col-md-12">
                                     <div class="form-group">
                                         <label for='update_pincode_id'>Pincodes <small>( Ex : 100,205, 360 <comma separated>) </small></label>
@@ -306,7 +312,7 @@ $config = $fn->get_configurations();
                                         </select>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <hr>
                             <div class="form-group">
                                 <label class="control-label col-md-5 col-sm-3 col-xs-12">Status</label>

@@ -76,9 +76,28 @@
                                 </div>
                             </div>
                             <div class="row">
+                                
+                                <div class="form-group col-md-8">
+                                    <div class="form-group">
+                                        <label for='catogories_ids'>Category IDs <small>( Ex : 100,205, 360 <comma separated>)</small></label><i class="text-danger asterik">*</i>
+                                        <select name='cat_ids[]' id='cat_ids' class='form-control' placeholder='Enter the category IDs you want to assign Seller' required multiple="multiple">
+                                            <?php $sql = 'select id,name from `category`  order by id desc';
+                                            $db->sql($sql);
+
+                                            $result = $db->getResult();
+                                            foreach ($result as $value) {
+                                            ?>
+                                                <option value='<?= $value['id'] ?>'><?= $value['name'] ?></option>
+                                            <?php } ?>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">
-                                        <label for="">Enter Pincode</label><i class="text-danger asterik">*</i>
+                                        <label for="">Pincode</label><i class="text-danger asterik">*</i>
                                         <input type="number" class="form-control" name="pincode_text" id="pincode_text" required>
                                     </div>
                                 </div>
@@ -131,25 +150,7 @@
                                 </div> -->
 
                             </div>
-                            <div class="row">
-                                
-                                <div class="form-group col-md-8">
-                                    <div class="form-group">
-                                        <label for='catogories_ids'>Category IDs <small>( Ex : 100,205, 360 <comma separated>)</small></label><i class="text-danger asterik">*</i>
-                                        <select name='cat_ids[]' id='cat_ids' class='form-control' placeholder='Enter the category IDs you want to assign Seller' required multiple="multiple">
-                                            <?php $sql = 'select id,name from `category`  order by id desc';
-                                            $db->sql($sql);
-
-                                            $result = $db->getResult();
-                                            foreach ($result as $value) {
-                                            ?>
-                                                <option value='<?= $value['id'] ?>'><?= $value['name'] ?></option>
-                                            <?php } ?>
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <div class="form-group">

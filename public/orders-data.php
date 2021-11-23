@@ -98,27 +98,11 @@ if (isset($res[0]) && !empty($res[0])) {
                                 </tr>
                                 <tr>
                                     <th style="width: 10px">Area</th>
-                                    <?php
-                                    if (!empty($res[0]['area_id'])) {
-                                        $area_id = $res[0]['area_id'];
-                                        $sql = "SELECT * FROM `area` WHERE id =$area_id";
-                                        $db->sql($sql);
-                                        $res_areas = $db->getResult();
-                                    } else {
-                                        $res_areas = array();
-                                    }
-                                    ?>
-                                    <td><?= (!empty($res_areas)) ? $res_areas[0]['name'] : "" ?></td>
+                                    <td><?= (isset($res[0]['area_text']) && !empty($res[0]['area_text'])) ? $res[0]['area_text'] : "" ?></td>
                                 </tr>
                                 <tr>
                                     <th style="width: 10px">Pincode</th>
-                                    <?php
-                                    $pincode_id = $res[0]['pincode_id'];
-                                    $sql = "SELECT * FROM `pincodes` WHERE id =$pincode_id";
-                                    $db->sql($sql);
-                                    $res_pincodes = $db->getResult();
-                                    ?>
-                                    <td><?= (!empty($res_pincodes)) ? $res_pincodes[0]['pincode'] : "" ?></td>
+                                    <td><?= (isset($res[0]['pincode_text']) && !empty($res[0]['pincode_text'])) ? $res[0]['pincode_text'] : "" ?></td>
                                 </tr>
                                 <tr>
                                     <th style="width: 10px">OTP</th>
@@ -126,7 +110,7 @@ if (isset($res[0]) && !empty($res[0])) {
                                 </tr>
                                 <?php
                                 // $sql = "SELECT id,name FROM delivery_boys WHERE status=1";
-                                $sql = "SELECT id,name,pincode_id,is_available FROM delivery_boys WHERE status=1 and FIND_IN_SET($pincode_id, pincode_id) ";
+                                $sql = "SELECT id,name,pincode_id,is_available FROM delivery_boys WHERE status=1 ";
                                 $db->sql($sql);
                                 $result = $db->getResult();
                                 ?>

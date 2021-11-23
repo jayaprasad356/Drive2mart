@@ -257,11 +257,11 @@ $res_logo = $db->getResult();
                     <ul class="treeview-menu">
                         <li><a href="add-product.php"><i class="fa fa-plus"></i> Add Product</a></li>
                         <li><a href="products.php"><i class="fa fa-sliders"></i> Manage Products</a></li>
-                        <li><a href="media.php"><i class="fa fa-file-image-o"></i> Media</a></li>
-                        <li><a href="bulk-upload.php"><i class="fa fa-upload"></i> Bulk Upload</a></li>
+                        <!-- <li><a href="media.php"><i class="fa fa-file-image-o"></i> Media</a></li>
+                        <li><a href="bulk-upload.php"><i class="fa fa-upload"></i> Bulk Upload</a></li> -->
                         <!-- <li><a href="bulk-update.php"><i class="fa fa-pencil"></i> Bulk Update</a></li> -->
                         <li><a href="products-taxes.php"><i class="fa fa-plus"></i> Taxes</a></li>
-                        <li><a href="products-order.php"><i class="fa fa-reorder"></i> Products Order</a></li>
+                        <!-- <li><a href="products-order.php"><i class="fa fa-reorder"></i> Products Order</a></li> -->
                     </ul>
                 </li>
                 <li class="treeview">
@@ -365,7 +365,7 @@ $res_logo = $db->getResult();
                     <a href="notification.php"> <i class="fa fa-share-square-o"></i><span>Send notification</span>
                     </a>
                 </li>
-                <li class="treeview">
+                <!-- <li class="treeview">
                     <a href="#">
                         <i class="fa fa-wrench"></i>
                         <span>Web Front-End Settings</span>
@@ -382,7 +382,7 @@ $res_logo = $db->getResult();
                         </li>
                         <li class="treeview"><a href="front-end-policies.php"><i class="fa fa-money"></i><span>Policies</span></a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-wrench"></i>
@@ -407,7 +407,7 @@ $res_logo = $db->getResult();
 
                     </ul>
                 </li>
-                <li class="treeview">
+                <!-- <li class="treeview">
                     <a href="#">
                         <i class="fa fa-map-marker"></i>
                         <span>Location</span>
@@ -418,7 +418,7 @@ $res_logo = $db->getResult();
                         <li><a href="city.php"><i class="fa fa-location-arrow"></i> Cities</a></li>
                         <li><a href="areas.php"><i class="fa fa-reorder"></i> Areas </a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-folder-open"></i>
