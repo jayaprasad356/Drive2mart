@@ -112,14 +112,16 @@ $res = $db->getResult();
                                     <div class="form-group">
                                         <label for="exampleInputFile">National Identity Card</label>
                                         <input type="file" name="national_id_card" id="national_id_card">
-                                        <p class="help-block"><img src="<?php echo DOMAIN_URL . 'upload/seller/' . $res[0]['national_identity_card']; ?>" style="max-width:100%" /></p>
+                                        <a href="<?php echo DOMAIN_URL . 'upload/seller/' . $res[0]['national_identity_card']; ?>" target="_blank" class="help-bloc"> View Document</a>
+                                        
                                     </div>
                                 </div>
                                 <div class="form-group col-md-3">
                                     <div class="form-group">
                                         <label for="exampleInputFile">Address Proof</label>
                                         <input type="file" name="address_proof" id="address_proof">
-                                        <p class="help-block"><img src="<?php echo DOMAIN_URL . 'upload/seller/' . $res[0]['address_proof']; ?>" style="max-width:100%" /></p>
+                                        <a href="<?php echo DOMAIN_URL . 'upload/seller/' . $res[0]['address_proof']; ?>" target="_blank" class="help-bloc"> View Document</a>
+                                        
                                     </div>
                                 </div>
                             </div>
