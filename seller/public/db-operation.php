@@ -102,12 +102,12 @@ if (isset($_POST['add_seller']) && $_POST['add_seller'] == 1) {
 
         $extension = pathinfo($_FILES["national_id_card"]["name"])['extension'];
 
-        $result = $fn->validate_image($_FILES["national_id_card"]);
-        if (!$result) {
-            echo " <span class='label label-danger'>National id card image type must jpg, jpeg, gif, or png!</span>";
-            return false;
-            exit();
-        }
+        // $result = $fn->validate_image($_FILES["national_id_card"]);
+        // if (!$result) {
+        //     echo " <span class='label label-danger'>National id card image type must jpg, jpeg, gif, or png!</span>";
+        //     return false;
+        //     exit();
+        // }
         $national_id_card = microtime(true) . '.' . strtolower($extension);
         $full_path = $target_path . "" . $national_id_card;
         if (!move_uploaded_file($_FILES["national_id_card"]["tmp_name"], $full_path)) {
@@ -119,12 +119,12 @@ if (isset($_POST['add_seller']) && $_POST['add_seller'] == 1) {
 
         $extension = pathinfo($_FILES["address_proof"]["name"])['extension'];
 
-        $result = $fn->validate_image($_FILES["address_proof"]);
-        if (!$result) {
-            echo " <span class='label label-danger'>Address Proof card image type must jpg, jpeg, gif, or png!</span>";
-            return false;
-            exit();
-        }
+        // $result = $fn->validate_image($_FILES["address_proof"]);
+        // if (!$result) {
+        //     echo " <span class='label label-danger'>Address Proof card image type must jpg, jpeg, gif, or png!</span>";
+        //     return false;
+        //     exit();
+        // }
         $address_proof = microtime(true) . '.' . strtolower($extension);
         $full_path = $target_path . "" . $address_proof;
         if (!move_uploaded_file($_FILES["address_proof"]["tmp_name"], $full_path)) {

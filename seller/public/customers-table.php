@@ -27,14 +27,14 @@
                     ?>
 
                     <div class="box-body table-responsive">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <select id="filter_user" name="filter_user" required class="form-control" style="width: 300px;">
                                 <option value="">Select Pincode</option>
                                 <?php foreach ($pincodes as $row) { ?>
                                     <option value='<?= $row['id'] ?>'><?= $row['pincode'] ?></option>
                                 <?php } ?>
                             </select>
-                        </div>
+                        </div> -->
                         <table class="table table-hover" id="user_table" data-toggle="table" data-url="get-bootstrap-table-data.php?table=users" data-page-list="[5, 10, 20, 50, 100, 200]" data-show-refresh="true" data-show-columns="true" data-side-pagination="server" data-pagination="true" data-search="true" data-trim-on-search="false" data-filter-show-clear="true" data-query-params="queryParams_1" data-sort-name="u.id" data-sort-order="desc">
                             <thead>
                                 <tr>

@@ -1321,31 +1321,6 @@ class custom_functions
             }
         }
     }
-    public function validate_doc($file, $is_image = true)
-    {
-        if (function_exists('finfo_file')) {
-            $finfo = finfo_open(FILEINFO_MIME_TYPE);
-            $type = finfo_file($finfo, $file['tmp_name']);
-        } else if (function_exists('mime_content_type')) {
-            $type = mime_content_type($file['tmp_name']);
-        } else {
-            $type = $file['type'];
-        }
-        $type = strtolower($type);
-        if ($is_image == false) {
-            if (in_array($type, array('text/plain', 'application/csv', 'application/vnd.ms-excel', 'text/csv'))) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            if (in_array($type, array('image/jpg', 'image/jpeg', 'image/gif', 'image/png', 'image/pdf', 'application/octet-stream'))) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
     public function validate_other_images($tmp_name, $type)
     {
         if (function_exists('finfo_file')) {

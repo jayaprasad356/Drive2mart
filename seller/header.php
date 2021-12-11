@@ -207,9 +207,9 @@ $logo = $fn->get_settings('logo');
                         <ul class="treeview-menu">
                             <li><a href="add-product.php"><i class="fa fa-plus"></i> Add Product</a></li>
                             <li><a href="products.php"><i class="fa fa-sliders"></i> Manage Products</a></li>
-                            <li><a href="media.php"><i class="fa fa-file-image-o"></i> Media</a></li>
+                            <!-- <li><a href="media.php"><i class="fa fa-file-image-o"></i> Media</a></li>
 
-                            <li><a href="bulk-upload.php"><i class="fa fa-upload"></i> Bulk Upload</a></li>
+                            <li><a href="bulk-upload.php"><i class="fa fa-upload"></i> Bulk Upload</a></li> -->
                             <!-- <li><a href="bulk-update.php"><i class="fa fa-pencil"></i> Bulk Update</a></li> -->
                             <li><a href="products-taxes.php"><i class="fa fa-plus"></i> Taxes</a></li>
                         </ul>
@@ -234,7 +234,7 @@ $logo = $fn->get_settings('logo');
                     </li>
 
 
-                    <li class="treeview">
+                    <!-- <li class="treeview">
                         <a href="#">
                             <i class="fa fa-map-marker"></i>
                             <span>Location</span>
@@ -245,7 +245,7 @@ $logo = $fn->get_settings('logo');
                             <li><a href="city.php"><i class="fa fa-location-arrow"></i> Cities</a></li>
                             <li><a href="areas.php"><i class="fa fa-reorder"></i> Areas </a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <li class="treeview">
                         <a href="seller-wallet-transactions.php">

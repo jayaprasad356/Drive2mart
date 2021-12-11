@@ -86,10 +86,12 @@ if (isset($_POST['btnEdit'])) {
         }
     }
     $error = array();
-    $pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";
-    if ($pincode_type == "all") {
-        $pincode_ids = NULL;
-    } else {
+    $pincode_type = $db->escapeString($fn->xss_clean('all'));
+        
+        //$pincode_type = (isset($_POST['product_pincodes']) && $_POST['product_pincodes'] != '') ? $db->escapeString($fn->xss_clean($_POST['product_pincodes'])) : "";
+        if ($pincode_type == "all") {
+            $pincode_ids = NULL;
+        } else {
         if (empty($_POST['pincode_ids_exc'])) {
             $error['pincode_ids_exc'] = "<label class='label label-danger'>Select pincodes!.</label>";
         } else {
@@ -740,7 +742,7 @@ function isJSON($string)
                                         <label for="">Made In :</label>
                                         <input type="text" name="made_in" value="<?= $res[0]['made_in'] ?>" class="form-control">
                                     </div>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="product_pincodes">Delivery Places :</label><i class="text-danger asterik">*</i>
@@ -777,7 +779,7 @@ function isJSON($string)
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> -->
 
                                     <div class="row">
                                         <div class="col-md-3">
